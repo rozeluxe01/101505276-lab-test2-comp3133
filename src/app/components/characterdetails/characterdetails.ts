@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { CommonModule, Location } from '@angular/common';
+import { ChangeDetectorRef, Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { CharacterService } from '../../services/character.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Character } from '../../models/character';
@@ -15,27 +15,30 @@ export class CharacterdetailsComponent {
 
   character?: Character;
   isLoading = true;
+  private selectedHouse = '';
 
   constructor(
     private service: CharacterService,
     private router: Router,
-    private location: Location,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
     const routeId = this.route.snapshot.paramMap.get('id');
+    this.selectedHouse = this.route.snapshot.queryParamMap.get('house') ?? '';
     const selectedCharacter = this.service.selectedCharacter as Character | undefined;
 
     if (!routeId) {
       this.isLoading = false;
-      this.router.navigate(['/']);
+      this.navigateHome();
       return;
     }
 
     if (selectedCharacter && this.matchesCharacter(routeId, selectedCharacter)) {
       this.character = selectedCharacter;
       this.isLoading = false;
+      this.cdr.detectChanges();
       return;
     }
 
@@ -45,28 +48,33 @@ export class CharacterdetailsComponent {
           this.matchesCharacter(routeId, character)
         );
         this.isLoading = false;
+        this.cdr.detectChanges();
 
         if (!this.character) {
-          this.router.navigate(['/']);
+          this.navigateHome();
         }
       },
       error: () => {
         this.isLoading = false;
-        this.router.navigate(['/']);
+        this.cdr.detectChanges();
+        this.navigateHome();
       }
     });
   }
 
   goBack() {
-    if (window.history.length > 1) {
-      this.location.back();
-      return;
-    }
-
-    this.router.navigate(['/']);
+    this.navigateHome();
   }
 
   private matchesCharacter(routeId: string, character: Character): boolean {
     return routeId === (character.id || character.name);
+  }
+
+  private navigateHome() {
+    const homeUrl = this.selectedHouse
+      ? `/?house=${encodeURIComponent(this.selectedHouse)}`
+      : '/';
+
+    window.location.href = homeUrl;
   }
 }

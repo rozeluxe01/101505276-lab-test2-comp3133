@@ -7,31 +7,30 @@
 </div>
 
 <div *ngIf="!isLoading && character" class="details-container">
-
   <div class="card">
-
-    <!-- IMAGE -->
     <div class="image">
       <img [src]="character.image" alt="{{ character.name }}">
     </div>
 
-    <!-- INFO -->
     <div class="info">
+      <p class="eyebrow">Character Profile</p>
       <h2>{{ character.name }}</h2>
+      <p class="house-pill" [ngClass]="character.house">{{ character.house || 'Unknown House' }}</p>
 
-      <p><strong>House:</strong> <span [ngClass]="character.house">{{ character.house }}</span></p>
-      <p><strong>Actor:</strong> {{ character.actor }}</p>
-      <p><strong>Species:</strong> {{ character.species }}</p>
-      <p><strong>Ancestry:</strong> {{ character.ancestry }}</p>
+      <div class="facts">
+        <p><strong>Actor</strong>{{ character.actor || 'Unknown' }}</p>
+        <p><strong>Species</strong>{{ character.species || 'Unknown' }}</p>
+        <p><strong>Ancestry</strong>{{ character.ancestry || 'Unknown' }}</p>
+      </div>
 
-      <h3>Wand</h3>
-      <p><strong>Wood:</strong> {{ character.wand?.wood }}</p>
-      <p><strong>Core:</strong> {{ character.wand?.core }}</p>
-      <p><strong>Length:</strong> {{ character.wand?.length }}</p>
+      <div class="wand-panel">
+        <h3>Wand Details</h3>
+        <p><strong>Wood</strong>{{ character.wand?.wood || 'Unknown' }}</p>
+        <p><strong>Core</strong>{{ character.wand?.core || 'Unknown' }}</p>
+        <p><strong>Length</strong>{{ character.wand?.length || 'Unknown' }}</p>
+      </div>
 
-      <button (click)="goBack()">⬅ Back</button>
+      <button (click)="goBack()">Back To Gallery</button>
     </div>
-
   </div>
-
 </div>

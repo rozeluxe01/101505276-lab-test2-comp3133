@@ -1,62 +1,190 @@
+.list-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(250px, 0.7fr);
+  gap: 24px;
+  align-items: end;
+  margin-bottom: 22px;
+  padding: 30px;
+  border-radius: var(--radius-lg);
+  background:
+    linear-gradient(135deg, rgba(45, 28, 20, 0.95), rgba(89, 56, 24, 0.92)),
+    #2d1c14;
+  color: var(--text-inverse);
+  box-shadow: var(--shadow);
+}
+
+.kicker {
+  margin: 0 0 10px;
+  font-size: 0.8rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: rgba(255, 229, 176, 0.78);
+}
+
+.hero-copy h2 {
+  margin: 0;
+  font-size: clamp(2rem, 3vw, 3.25rem);
+  line-height: 1.02;
+  max-width: 11ch;
+}
+
+.hero-text {
+  margin: 14px 0 0;
+  max-width: 54ch;
+  color: rgba(255, 245, 225, 0.84);
+  font-size: 1.02rem;
+}
+
+.toolbar {
+  padding: 20px;
+  border-radius: 22px;
+  background: rgba(255, 248, 236, 0.1);
+  border: 1px solid rgba(255, 231, 180, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+.toolbar label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 230, 183, 0.84);
+}
+
+.toolbar select {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid rgba(255, 232, 188, 0.34);
+  border-radius: 16px;
+  background: rgba(255, 251, 244, 0.94);
+  color: #24160f;
+  outline: none;
+}
+
+.results-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin: 0 0 20px;
+  padding: 0 6px;
+  color: var(--muted);
+  font-weight: 700;
+}
+
 .container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 20px;
-  padding: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 24px;
 }
 
 .card {
-  background: #111;
-  color: white;
-  border-radius: 10px;
-  padding: 15px;
-  text-align: center;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-  transition: transform 0.2s;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 16px;
+  border-radius: 24px;
+  color: var(--text-inverse);
+  background:
+    linear-gradient(180deg, rgba(38, 27, 21, 0.98), rgba(17, 12, 10, 0.98)),
+    #17100d;
+  border: 1px solid rgba(255, 222, 167, 0.08);
+  box-shadow: 0 18px 35px rgba(35, 17, 7, 0.24);
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
 }
 
 .card:hover {
-  transform: scale(1.05);
+  transform: translateY(-6px);
+  box-shadow: 0 28px 45px rgba(35, 17, 7, 0.28);
+}
+
+.image-frame {
+  padding: 10px;
+  border-radius: 20px;
+  background: linear-gradient(180deg, rgba(255, 227, 182, 0.18), rgba(255, 255, 255, 0.04));
 }
 
 .card img {
+  display: block;
   width: 100%;
-  height: 250px;
+  height: 280px;
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: 14px;
+}
+
+.card-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.card-body h3 {
+  margin: 0;
+  font-size: 1.55rem;
+  line-height: 1.15;
 }
 
 .house {
-  color: #00ff88;
-  font-weight: bold;
+  margin: 10px 0 0;
+  font-weight: 700;
+  letter-spacing: 0.04em;
 }
 
 button {
-  margin-top: 10px;
-  padding: 8px 12px;
+  margin-top: auto;
+  padding: 12px 18px;
   border: none;
-  border-radius: 5px;
-  background: #00ff88;
-  color: black;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #f1cf82, #d9a44b);
+  color: #1e110b;
+  font-weight: 700;
   cursor: pointer;
+  transition: transform 0.2s ease, filter 0.2s ease;
 }
 
 button:hover {
-  background: #00cc66;
+  transform: translateY(-1px);
+  filter: brightness(1.03);
 }
 
 .Gryffindor {
-  color: #ae0001; /* red */
+  color: #ff8d7b;
 }
 
 .Slytherin {
-  color: #2a623d; /* green */
+  color: #89e2a4;
 }
 
 .Hufflepuff {
-  color: #ecb939; /* yellow */
+  color: #ffd867;
 }
 
 .Ravenclaw {
-  color: #222f5b; /* blue */
+  color: #9bb4ff;
+}
+
+@media (max-width: 820px) {
+  .list-hero {
+    grid-template-columns: 1fr;
+    padding: 24px;
+  }
+
+  .hero-copy h2 {
+    max-width: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .results-bar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .container {
+    grid-template-columns: 1fr;
+  }
 }

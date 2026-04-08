@@ -1,67 +1,136 @@
 .details-container {
   display: flex;
   justify-content: center;
-  padding: 40px;
+  padding: 12px 0 24px;
 }
 
 .card {
   display: flex;
-  gap: 30px;
-  background: #111;
-  color: white;
-  border-radius: 10px;
-  padding: 20px;
-  max-width: 900px;
+  gap: 34px;
+  background:
+    linear-gradient(140deg, rgba(42, 28, 18, 0.96), rgba(18, 12, 10, 0.98)),
+    #18110e;
+  color: var(--text-inverse);
+  border-radius: 28px;
+  padding: 26px;
+  max-width: 1020px;
   width: 100%;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+  border: 1px solid rgba(255, 220, 164, 0.1);
+  box-shadow: var(--shadow);
+}
+
+.image {
+  flex: 0 0 min(320px, 38%);
+  padding: 12px;
+  border-radius: 24px;
+  background: linear-gradient(180deg, rgba(255, 227, 182, 0.18), rgba(255, 255, 255, 0.04));
 }
 
 .image img {
-  width: 250px;
-  height: 350px;
+  width: 100%;
+  height: 100%;
+  min-height: 420px;
   object-fit: cover;
-  border-radius: 10px;
+  border-radius: 18px;
 }
 
 .info {
   flex: 1;
 }
 
-.info h2 {
-  margin-top: 0;
+.eyebrow {
+  margin: 0 0 10px;
+  font-size: 0.8rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255, 224, 164, 0.8);
 }
 
-.info p {
-  margin: 8px 0;
+.info h2 {
+  margin: 0;
+  font-size: clamp(2.1rem, 4vw, 3.5rem);
+  line-height: 0.98;
+}
+
+.house-pill {
+  display: inline-flex;
+  margin: 16px 0 24px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: rgba(255, 248, 236, 0.08);
+  border: 1px solid rgba(255, 226, 177, 0.14);
+  font-weight: 700;
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.facts p,
+.wand-panel p {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0;
+  padding: 16px;
+  border-radius: 18px;
+  background: rgba(255, 248, 236, 0.08);
+  border: 1px solid rgba(255, 226, 177, 0.1);
+}
+
+.facts strong,
+.wand-panel strong {
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 224, 164, 0.82);
+}
+
+.wand-panel {
+  margin-top: 20px;
+}
+
+.wand-panel h3 {
+  margin: 0 0 12px;
+  font-size: 1.35rem;
 }
 
 button {
-  margin-top: 20px;
-  padding: 10px 15px;
+  margin-top: 28px;
+  padding: 13px 20px;
   border: none;
-  background: #00ff88;
-  color: black;
-  border-radius: 5px;
+  background: linear-gradient(135deg, #f1cf82, #d9a44b);
+  color: #1f110b;
+  border-radius: 999px;
   cursor: pointer;
+  font-weight: 700;
+  transition: transform 0.2s ease, filter 0.2s ease;
 }
 
 button:hover {
-  background: #00cc66;
+  transform: translateY(-1px);
+  filter: brightness(1.03);
 }
 
-.Gryffindor { color: #ae0001; }
-.Slytherin { color: #2a623d; }
-.Hufflepuff { color: #ecb939; }
-.Ravenclaw { color: #222f5b; }
+.Gryffindor { color: #ff8d7b; }
+.Slytherin { color: #89e2a4; }
+.Hufflepuff { color: #ffd867; }
+.Ravenclaw { color: #9bb4ff; }
 
 @media (max-width: 768px) {
   .card {
     flex-direction: column;
-    align-items: center;
+    padding: 20px;
+  }
+
+  .facts {
+    grid-template-columns: 1fr;
   }
 
   .image img {
     width: 100%;
-    height: auto;
+    min-height: 320px;
   }
 }

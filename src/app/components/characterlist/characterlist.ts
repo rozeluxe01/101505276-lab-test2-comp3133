@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { CharacterService } from '../../services/character.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Character } from '../../models/character';
 
 @Component({
@@ -19,35 +19,46 @@ export class CharacterlistComponent {
   houses = ['Gryffindor', 'Slytherin', 'Hufflepuff', 'Ravenclaw'];
   selectedHouse = '';
 
-  constructor(private service: CharacterService, private router: Router) {}
+  constructor(
+    private service: CharacterService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   ngOnInit() {
-    this.loadAll();
-  }
-
-  loadAll() {
-    this.service.getAllCharacters().subscribe(data => {
-      this.characters = data;
+    this.route.queryParamMap.subscribe((params) => {
+      const house = params.get('house') ?? '';
+      this.selectedHouse = house;
+      this.loadCharacters(house);
     });
   }
 
   viewDetails(character: Character) {
     this.service.selectedCharacter = character;
-    this.router.navigate(['/details', this.getCharacterRouteId(character)]);
+    this.router.navigate(['/details', this.getCharacterRouteId(character)], {
+      queryParams: this.selectedHouse ? { house: this.selectedHouse } : {}
+    });
   }
   
   onFilter() {
-    if (this.selectedHouse === '') {
-      this.loadAll();
-    } else {
-      this.service.getCharactersByHouse(this.selectedHouse)
-        .subscribe(data => {
-          this.characters = data;
-        });
-    }
+    this.router.navigate(['/'], {
+      queryParams: this.selectedHouse ? { house: this.selectedHouse } : {}
+    });
   }
 
   private getCharacterRouteId(character: Character): string {
     return character.id || character.name;
+  }
+
+  private loadCharacters(house: string) {
+    const request = house
+      ? this.service.getCharactersByHouse(house)
+      : this.service.getAllCharacters();
+
+    request.subscribe((data) => {
+      this.characters = data;
+      this.cdr.detectChanges();
+    });
   }
 }

@@ -1,23 +1,39 @@
-<h2>Harry Potter Characters</h2>
+<section class="list-hero">
+  <div class="hero-copy">
+    <p class="kicker">Character Atlas</p>
+    <h2>Explore the witches and wizards of Hogwarts</h2>
+    <p class="hero-text">
+      Browse the full roster or narrow the gallery by house to focus on the characters you want to compare.
+    </p>
+  </div>
 
-<!-- FILTER -->
-<select [(ngModel)]="selectedHouse" (change)="onFilter()">
-  <option value="">All Houses</option>
-  <option *ngFor="let h of houses" [value]="h">
-    {{ h }}
-  </option>
-</select>
+  <div class="toolbar">
+    <label for="house-select">Choose a house</label>
+    <select id="house-select" [(ngModel)]="selectedHouse" (change)="onFilter()">
+      <option value="">All Houses</option>
+      <option *ngFor="let h of houses" [value]="h">
+        {{ h }}
+      </option>
+    </select>
+  </div>
+</section>
 
-<!-- CARDS -->
+<div class="results-bar">
+  <p>{{ characters.length }} characters shown</p>
+  <p>{{ selectedHouse || 'All Houses' }}</p>
+</div>
+
 <div class="container">
   <div class="card" *ngFor="let c of characters">
-    <img [src]="c.image" alt="{{ c.name }}">
+    <div class="image-frame">
+      <img [src]="c.image" alt="{{ c.name }}">
+    </div>
 
     <div class="card-body">
       <h3>{{ c.name }}</h3>
       <p class="house" [ngClass]="c.house">{{ c.house }}</p>
 
-      <button (click)="viewDetails(c)">View</button>
+      <button (click)="viewDetails(c)">View Profile</button>
     </div>
   </div>
 </div>
