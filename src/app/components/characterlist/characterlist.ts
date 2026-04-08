@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Character } from '../../models/character';
 
 @Component({
   selector: 'app-characterlist',
@@ -14,7 +15,7 @@ import { Router } from '@angular/router';
 })
 export class CharacterlistComponent {
 
-  characters: any[] = [];
+  characters: Character[] = [];
   houses = ['Gryffindor', 'Slytherin', 'Hufflepuff', 'Ravenclaw'];
   selectedHouse = '';
 
@@ -30,9 +31,9 @@ export class CharacterlistComponent {
     });
   }
 
-  viewDetails(character: any) {
+  viewDetails(character: Character) {
     this.service.selectedCharacter = character;
-    this.router.navigate(['/details']);
+    this.router.navigate(['/details', this.getCharacterRouteId(character)]);
   }
   
   onFilter() {
@@ -44,5 +45,9 @@ export class CharacterlistComponent {
           this.characters = data;
         });
     }
+  }
+
+  private getCharacterRouteId(character: Character): string {
+    return character.id || character.name;
   }
 }

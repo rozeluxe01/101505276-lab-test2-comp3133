@@ -1,4 +1,12 @@
-<div *ngIf="character" class="details-container">
+<div *ngIf="isLoading" class="details-container">
+  <div class="card">
+    <div class="info">
+      <h2>Loading character...</h2>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!isLoading && character" class="details-container">
 
   <div class="card">
 

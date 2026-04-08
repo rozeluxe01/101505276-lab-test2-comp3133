@@ -7,5 +7,5 @@ import { CharacterfilterComponent } from './components/characterfilter/character
 export const routes: Routes = [
   { path: '', component: CharacterlistComponent },
   { path: 'filter', component: CharacterfilterComponent },
-  { path: 'details', component: CharacterdetailsComponent }
+  { path: 'details/:id', component: CharacterdetailsComponent }
 ];
