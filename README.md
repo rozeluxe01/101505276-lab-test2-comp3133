@@ -42,9 +42,9 @@ Description:
 This screen shows the detailed profile of a selected character, including the house, actor, species, ancestry, and wand details, along with the button to return to the gallery.
 
 Suggested screenshot file:
-`docs/screenshots/sample_1.png`
-`docs/screenshots/sample_2.png`
-`docs/screenshots/sample_3.png`
+![Home](docs/screenshots/sample_1.png)
+![Filtered](docs/screenshots/sample_2.png)
+![Character Details](docs/screenshots/sample_3.png)
 
 Note:
 Actual screenshot image files were not generated automatically in this environment because no local frame-extraction tool was available for the provided screen recording. If required for submission, export a few PNG screenshots from the running app and place them in the `docs/screenshots/` folder using the filenames above.
