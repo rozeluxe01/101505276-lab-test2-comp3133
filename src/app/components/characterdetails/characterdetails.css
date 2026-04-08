@@ -1,0 +1,67 @@
+.details-container {
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+}
+
+.card {
+  display: flex;
+  gap: 30px;
+  background: #111;
+  color: white;
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 900px;
+  width: 100%;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+.image img {
+  width: 250px;
+  height: 350px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.info {
+  flex: 1;
+}
+
+.info h2 {
+  margin-top: 0;
+}
+
+.info p {
+  margin: 8px 0;
+}
+
+button {
+  margin-top: 20px;
+  padding: 10px 15px;
+  border: none;
+  background: #00ff88;
+  color: black;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #00cc66;
+}
+
+.Gryffindor { color: #ae0001; }
+.Slytherin { color: #2a623d; }
+.Hufflepuff { color: #ecb939; }
+.Ravenclaw { color: #222f5b; }
+
+@media (max-width: 768px) {
+  .card {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .image img {
+    width: 100%;
+    height: auto;
+  }
+}

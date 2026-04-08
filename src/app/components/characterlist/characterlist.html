@@ -1,0 +1,23 @@
+<h2>Harry Potter Characters</h2>
+
+<!-- FILTER -->
+<select [(ngModel)]="selectedHouse" (change)="onFilter()">
+  <option value="">All Houses</option>
+  <option *ngFor="let h of houses" [value]="h">
+    {{ h }}
+  </option>
+</select>
+
+<!-- CARDS -->
+<div class="container">
+  <div class="card" *ngFor="let c of characters">
+    <img [src]="c.image" alt="{{ c.name }}">
+
+    <div class="card-body">
+      <h3>{{ c.name }}</h3>
+      <p class="house" [ngClass]="c.house">{{ c.house }}</p>
+
+      <button (click)="viewDetails(c)">View</button>
+    </div>
+  </div>
+</div>

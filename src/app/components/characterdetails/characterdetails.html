@@ -1,0 +1,29 @@
+<div *ngIf="character" class="details-container">
+
+  <div class="card">
+
+    <!-- IMAGE -->
+    <div class="image">
+      <img [src]="character.image" alt="{{ character.name }}">
+    </div>
+
+    <!-- INFO -->
+    <div class="info">
+      <h2>{{ character.name }}</h2>
+
+      <p><strong>House:</strong> <span [ngClass]="character.house">{{ character.house }}</span></p>
+      <p><strong>Actor:</strong> {{ character.actor }}</p>
+      <p><strong>Species:</strong> {{ character.species }}</p>
+      <p><strong>Ancestry:</strong> {{ character.ancestry }}</p>
+
+      <h3>Wand</h3>
+      <p><strong>Wood:</strong> {{ character.wand?.wood }}</p>
+      <p><strong>Core:</strong> {{ character.wand?.core }}</p>
+      <p><strong>Length:</strong> {{ character.wand?.length }}</p>
+
+      <button (click)="goBack()">⬅ Back</button>
+    </div>
+
+  </div>
+
+</div>
